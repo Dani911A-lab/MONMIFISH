@@ -44,30 +44,39 @@ header p{font-size:0.9rem;color:var(--muted);}
 .section-header i{font-size:1.2rem;color:var(--primary);}
 .section-header h2{font-size:1rem;font-weight:600;color:var(--text);}
 
-/* Ingreso detalles */
-.ingreso-detalles{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.5rem;margin-bottom:0.75rem;}
-.ingreso-detalles div strong{color:var(--muted);}
+/* Resumen Mensual */
+.resumen-list{margin-top:0.75rem;display:flex;flex-direction:column;gap:0.5rem;}
+.resumen-card{border:1px solid var(--border);border-radius:0.75rem;padding:0.5rem;background:var(--bg);}
+.resumen-card h4{margin-bottom:0.25rem;color:var(--primary);font-size:0.95rem;}
+.resumen-card p{font-size:0.8rem;color:var(--muted);}
+.resumen-kavetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:0.3rem;margin-top:0.25rem;}
+.resumen-kavetas div{border:1px solid var(--border);border-radius:0.4rem;text-align:center;padding:0.3rem;font-size:0.75rem;background:#fff;}
 
-/* Kavetas grid */
-.kavetas h3{margin-top:0.75rem;margin-bottom:0.25rem;font-size:1rem;}
-.kaveta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:0.5rem;}
-.kaveta-item{background:var(--bg);border:1px solid var(--border);border-radius:0.5rem;text-align:center;padding:0.4rem;font-size:0.8rem;}
+/* Control Calidad */
+.calidad-list{display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem;}
+.calidad-lote{border:1px solid var(--border);border-radius:0.75rem;padding:0.5rem;background:#fff;}
+.calidad-lote h4{margin-bottom:0.25rem;color:var(--primary);font-size:0.9rem;}
+.calidad-vin{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;}
+.contador{margin-top:0.5rem;font-size:0.85rem;color:var(--muted);}
 
-/* Stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.75rem;}
-.stat{background:var(--bg);border-radius:0.75rem;padding:0.8rem;text-align:center;border:1px solid var(--border);}
-.stat .number{font-size:1.2rem;font-weight:700;color:var(--secondary);}
+/* Peso / Estadísticas */
+.stats{display:flex;justify-content:space-around;margin-top:0.5rem;}
+.stat{text-align:center;}
+.stat .number{font-size:1.2rem;font-weight:700;color:var(--primary);}
 .stat .label{font-size:0.75rem;color:var(--muted);}
 
 /* Steps */
-.steps{display:flex;flex-direction:column;gap:0.75rem;}
-.step{display:flex;justify-content:space-between;padding:0.7rem 1rem;border:1px solid var(--border);border-radius:0.75rem;background:var(--card);}
-.step-info{flex:1;}
-.step-info h3{font-size:0.95rem;font-weight:600;margin-bottom:0.25rem;}
-.step-info p{font-size:0.8rem;color:var(--muted);}
-.step .badge{background:var(--primary);color:#fff;font-weight:600;padding:0.4rem 0.6rem;border-radius:50%;font-size:0.8rem;}
+.steps{display:flex;flex-direction:column;gap:0.5rem;}
+.step{display:flex;justify-content:space-between;align-items:center;padding:0.5rem;border:1px solid var(--border);border-radius:0.6rem;background:#fff;}
+.step-info h3{font-size:0.85rem;color:var(--text);}
+.step-info p{font-size:0.75rem;color:var(--muted);}
+.badge{background:var(--primary);color:#fff;padding:0.2rem 0.5rem;border-radius:0.5rem;font-size:0.75rem;}
 
 /* Charts */
-.charts{display:flex;flex-direction:column;gap:1rem;}
-.chart-container{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:0.75rem;}
-canvas{width:100% !important;height:auto !important;}
+.charts{display:flex;flex-direction:column;gap:1rem;margin-top:0.5rem;}
+.chart-container{background:#fff;border:1px solid var(--border);border-radius:0.75rem;padding:0.5rem;}
+canvas{width:100% !important;height:200px !important;}
+
+/* Kavetas / Items */
+.kaveta-item{border:1px solid var(--border);border-radius:0.4rem;text-align:center;padding:0.3rem;font-size:0.75rem;background:#fff;}
+.kaveta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:0.3rem;}
