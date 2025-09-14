@@ -16,7 +16,7 @@
 
   <!-- Menú de iconos (pestañas) -->
   <nav class="tabs">
-    <button class="tab-btn active" data-target="tab-ingreso"><i class="fas fa-box"></i><span>Ingreso</span></button>
+    <button class="tab-btn active" data-target="tab-resumen"><i class="fas fa-calendar-alt"></i><span>Resumen Mensual</span></button>
     <button class="tab-btn" data-target="tab-calidad"><i class="fas fa-check-circle"></i><span>Calidad</span></button>
     <button class="tab-btn" data-target="tab-peso"><i class="fas fa-weight"></i><span>Peso</span></button>
     <button class="tab-btn" data-target="tab-proceso"><i class="fas fa-sync-alt"></i><span>Proceso</span></button>
@@ -24,28 +24,13 @@
   </nav>
 
   <div class="container">
-    <!-- INGRESO -->
-    <div class="tab-content" id="tab-ingreso">
+    <!-- RESUMEN MENSUAL -->
+    <div class="tab-content active" id="tab-resumen">
       <div class="card">
-        <div class="section-header"><i class="fas fa-box"></i><h2>Ingreso a Planta</h2></div>
-
-        <!-- Select de Guías -->
-        <label for="select-guia">Seleccione Guía / Factura:</label>
-        <select id="select-guia"></select>
-
-        <!-- Detalles de la guía seleccionada -->
-        <div class="ingreso-detalles">
-          <div><strong>Fecha:</strong> <span id="detalle-fecha"></span></div>
-          <div><strong>Proveedor:</strong> <span id="detalle-proveedor"></span></div>
-          <div><strong>Peso Reportado:</strong> <span id="detalle-peso"></span></div>
-          <div><strong>Lote:</strong> <span id="detalle-lote"></span></div>
-        </div>
-
-        <!-- Kavetas en grid -->
-        <div class="kavetas">
-          <h3>Kavetas</h3>
-          <div id="kaveta-list" class="kaveta-grid"></div>
-        </div>
+        <div class="section-header"><i class="fas fa-calendar-alt"></i><h2>Resumen Mensual</h2></div>
+        <label for="select-mes">Seleccione Mes:</label>
+        <select id="select-mes"></select>
+        <div id="resumen-list" class="resumen-list"></div>
       </div>
     </div>
 
@@ -53,7 +38,12 @@
     <div class="tab-content" id="tab-calidad">
       <div class="card">
         <div class="section-header"><i class="fas fa-check-circle"></i><h2>Control de Calidad</h2></div>
-        <p>Inspección por VIN y lote.</p>
+        <p>Marque los VINs inspeccionados por lote:</p>
+        <div id="calidad-list" class="calidad-list"></div>
+        <div class="contador">
+          <span>Marcados: <strong id="check-marked">0</strong></span> | 
+          <span>No Marcados: <strong id="check-unmarked">0</strong></span>
+        </div>
       </div>
     </div>
 
@@ -62,7 +52,7 @@
       <div class="card">
         <div class="section-header"><i class="fas fa-weight"></i><h2>Recepción y Peso</h2></div>
         <div class="stats">
-          <div class="stat"><div class="number" id="avgWeight">-</div><div class="label">Peso Promedio (kg)</div></div>
+          <div class="stat"><div class="number" id="avgWeight">-</div><div class="label">Peso Promedio (lb)</div></div>
           <div class="stat"><div class="number" id="mermaPct">-</div><div class="label">Merma (%)</div></div>
           <div class="stat"><div class="number" id="rendimiento">-</div><div class="label">Rendimiento Descabezado (%)</div></div>
         </div>
