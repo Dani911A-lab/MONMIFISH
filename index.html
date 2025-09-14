@@ -28,10 +28,23 @@
     <div class="tab-content" id="tab-ingreso">
       <div class="card">
         <div class="section-header"><i class="fas fa-box"></i><h2>Ingreso a Planta</h2></div>
-        <p>Camaron recibido con guía.</p>
-        <div class="stats">
-          <div class="stat"><div class="number" id="totalGuides">-</div><div class="label">Guías</div></div>
-          <div class="stat"><div class="number" id="totalItems">-</div><div class="label">Items</div></div>
+
+        <!-- Select de Guías -->
+        <label for="select-guia">Seleccione Guía / Factura:</label>
+        <select id="select-guia"></select>
+
+        <!-- Detalles de la guía seleccionada -->
+        <div class="ingreso-detalles">
+          <div><strong>Fecha:</strong> <span id="detalle-fecha"></span></div>
+          <div><strong>Proveedor:</strong> <span id="detalle-proveedor"></span></div>
+          <div><strong>Peso Reportado:</strong> <span id="detalle-peso"></span></div>
+          <div><strong>Lote:</strong> <span id="detalle-lote"></span></div>
+        </div>
+
+        <!-- Kavetas en grid -->
+        <div class="kavetas">
+          <h3>Kavetas</h3>
+          <div id="kaveta-list" class="kaveta-grid"></div>
         </div>
       </div>
     </div>
