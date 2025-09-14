@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento Camarón</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>Seguimiento de Camarón</h1>
+    <p>Planta / Proceso / Control de calidad</p>
+  </header>
+
+  <!-- Menú de iconos (pestañas) -->
+  <nav class="tabs">
+    <button class="tab-btn active" data-target="tab-ingreso"><i class="fas fa-box"></i><span>Ingreso</span></button>
+    <button class="tab-btn" data-target="tab-calidad"><i class="fas fa-check-circle"></i><span>Calidad</span></button>
+    <button class="tab-btn" data-target="tab-peso"><i class="fas fa-weight"></i><span>Peso</span></button>
+    <button class="tab-btn" data-target="tab-proceso"><i class="fas fa-sync-alt"></i><span>Proceso</span></button>
+    <button class="tab-btn" data-target="tab-graficos"><i class="fas fa-chart-pie"></i><span>Gráficos</span></button>
+  </nav>
+
+  <div class="container">
+    <!-- INGRESO -->
+    <div class="tab-content" id="tab-ingreso">
+      <div class="card">
+        <div class="section-header"><i class="fas fa-box"></i><h2>Ingreso a Planta</h2></div>
+        <p>Camaron recibido con guía.</p>
+        <div class="stats">
+          <div class="stat"><div class="number" id="totalGuides">-</div><div class="label">Guías</div></div>
+          <div class="stat"><div class="number" id="totalItems">-</div><div class="label">Items</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROL CALIDAD -->
+    <div class="tab-content" id="tab-calidad">
+      <div class="card">
+        <div class="section-header"><i class="fas fa-check-circle"></i><h2>Control de Calidad</h2></div>
+        <p>Inspección por VIN y lote.</p>
+      </div>
+    </div>
+
+    <!-- PESO -->
+    <div class="tab-content" id="tab-peso">
+      <div class="card">
+        <div class="section-header"><i class="fas fa-weight"></i><h2>Recepción y Peso</h2></div>
+        <div class="stats">
+          <div class="stat"><div class="number" id="avgWeight">-</div><div class="label">Peso Promedio (kg)</div></div>
+          <div class="stat"><div class="number" id="mermaPct">-</div><div class="label">Merma (%)</div></div>
+          <div class="stat"><div class="number" id="rendimiento">-</div><div class="label">Rendimiento Descabezado (%)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESO -->
+    <div class="tab-content" id="tab-proceso">
+      <div class="card">
+        <div class="section-header"><i class="fas fa-sync-alt"></i><h2>Proceso</h2></div>
+        <div class="steps"></div>
+      </div>
+    </div>
+
+    <!-- GRAFICOS -->
+    <div class="tab-content" id="tab-graficos">
+      <div class="card">
+        <div class="section-header"><i class="fas fa-chart-pie"></i><h2>Gráficos</h2></div>
+        <div class="charts">
+          <div class="chart-container"><canvas id="classChart"></canvas></div>
+          <div class="chart-container"><canvas id="statusChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
