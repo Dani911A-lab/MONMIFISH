@@ -1,84 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seguimiento Camarón</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<title>Módulo Ventas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
 </head>
+<script type="module" src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/lucide.min.js"></script>
+
 <body>
-  <header>
-    <h1>Seguimiento de Camarón</h1>
-    <p>Planta / Proceso / Control de calidad</p>
-  </header>
 
-  <!-- Menú de iconos (pestañas) -->
-  <nav class="tabs">
-    <button class="tab-btn active" data-target="tab-resumen"><i class="fas fa-calendar-alt"></i><span>Resumen Mensual</span></button>
-    <button class="tab-btn" data-target="tab-calidad"><i class="fas fa-check-circle"></i><span>Calidad</span></button>
-    <button class="tab-btn" data-target="tab-peso"><i class="fas fa-weight"></i><span>Peso</span></button>
-    <button class="tab-btn" data-target="tab-proceso"><i class="fas fa-sync-alt"></i><span>Proceso</span></button>
-    <button class="tab-btn" data-target="tab-graficos"><i class="fas fa-chart-pie"></i><span>Gráficos</span></button>
-  </nav>
+<div class="app-layout">
 
-  <div class="container">
-    <!-- RESUMEN MENSUAL -->
-    <div class="tab-content active" id="tab-resumen">
-      <div class="card">
-        <div class="section-header"><i class="fas fa-calendar-alt"></i><h2>Resumen Mensual</h2></div>
-        <label for="select-mes">Seleccione Mes:</label>
-        <select id="select-mes"></select>
-        <div id="resumen-list" class="resumen-list"></div>
+  <aside class="panel-izquierdo"></aside>
+
+  <section id="modulo-ventas">
+
+    <div class="ventas-contenedor">
+
+      <div class="ventas-tabs">
+        <button class="ventas-tab active" data-tab="directorio">DIRECTORIO</button>
+        <button class="ventas-tab" data-tab="autorizacion">AUTORIZACIÓN DE VENTA</button>
+        <button class="ventas-tab" data-tab="facturacion">FACTURACIÓN</button>
+        <button class="ventas-tab" data-tab="documentos">DOCUMENTOS</button>
       </div>
-    </div>
 
-    <!-- CONTROL CALIDAD -->
-    <div class="tab-content" id="tab-calidad">
-      <div class="card">
-        <div class="section-header"><i class="fas fa-check-circle"></i><h2>Control de Calidad</h2></div>
-        <p>Marque los VINs inspeccionados por lote:</p>
-        <div id="calidad-list" class="calidad-list"></div>
-        <div class="contador">
-          <span>Marcados: <strong id="check-marked">0</strong></span> | 
-          <span>No Marcados: <strong id="check-unmarked">0</strong></span>
+      <div class="ventas-vistas">
+
+        <!-- DIRECTORIO -->
+        <div class="ventas-vista active" id="directorio">
+          <div class="directorio-contenedor">
+
+            <div class="directorio-form">
+              <h3>Registro Clientes</h3>
+
+              <label>Razón Social</label>
+              <input id="razonSocial">
+
+              <label>RUC</label>
+              <input id="ruc">
+
+              <label>Personal</label>
+              <input id="personal">
+
+              <label>Cargo</label>
+              <input id="cargo">
+
+              <label>Teléfono</label>
+              <input id="telefono">
+
+              <label>Email</label>
+              <input id="email">
+
+              <button id="guardarCliente">GUARDAR</button>
+            </div>
+
+            <div class="directorio-tabla-contenedor">
+              <div class="directorio-tabla">
+                <div class="tabla-scroll">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Razón Social</th>
+                        <th>RUC</th>
+                        <th>Personal</th>
+                        <th>Cargo</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="tablaClientes"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+<!-- AUTORIZACION -->
+<div class="ventas-vista" id="autorizacion">
+
+  <!-- TÍTULO DE LA SECCIÓN -->
+  <h3 class="autorizacion-titulo">Autorización de Venta</h3>
+
+  <div class="autorizacion-layout">
+
+    <!-- Contenedor de registros -->
+    <div class="autorizacion-registro">
+
+      <!-- Encabezados -->
+      <div class="autorizacion-headers">
+        <div>Razón Social</div>
+        <div>Origen</div>
+        <div>Cant</div>
+        <div>Unidad</div>
+        <div>Precio</div>
+        <div>Subtotal</div>
+        <div>Retenc. 1%</div>
+        <div>Pago</div>
+        <div>SEM</div>
+        <div>FECHA</div>
       </div>
+
+      <!-- Filas dinámicas se crean aquí desde JS -->
+
+      <!-- TOTAL -->
+      <div class="autorizacion-totales">
+        <div>Total:</div>
+        <div></div>
+        <div class="total-cant">0</div>
+        <div></div>
+        <div class="total-precio">0.00</div>
+        <div class="total-subtotal">0.00</div>
+        <div class="total-retencion">0.00</div>
+        <div class="total-pago">0.00</div>
+      </div>
+
     </div>
 
-    <!-- PESO -->
-    <div class="tab-content" id="tab-peso">
-      <div class="card">
-        <div class="section-header"><i class="fas fa-weight"></i><h2>Recepción y Peso</h2></div>
-        <div class="stats">
-          <div class="stat"><div class="number" id="avgWeight">-</div><div class="label">Peso Promedio (lb)</div></div>
-          <div class="stat"><div class="number" id="mermaPct">-</div><div class="label">Merma (%)</div></div>
-          <div class="stat"><div class="number" id="rendimiento">-</div><div class="label">Rendimiento Descabezado (%)</div></div>
-        </div>
-      </div>
+    <!-- Botones -->
+    <div class="autorizacion-botones">
+      <button id="nuevoRegistro">+ NUEVO REGISTRO</button>
+      <button id="generarOrden">GENERAR ORDEN</button>
     </div>
 
-    <!-- PROCESO -->
-    <div class="tab-content" id="tab-proceso">
-      <div class="card">
-        <div class="section-header"><i class="fas fa-sync-alt"></i><h2>Proceso</h2></div>
-        <div class="steps"></div>
-      </div>
-    </div>
-
-    <!-- GRAFICOS -->
-    <div class="tab-content" id="tab-graficos">
-      <div class="card">
-        <div class="section-header"><i class="fas fa-chart-pie"></i><h2>Gráficos</h2></div>
-        <div class="charts">
-          <div class="chart-container"><canvas id="classChart"></canvas></div>
-          <div class="chart-container"><canvas id="statusChart"></canvas></div>
-        </div>
-      </div>
-    </div>
   </div>
 
-  <script src="script.js"></script>
+</div>
+
+
+
+
+
+
+
+        <!-- FACTURACION -->
+        <div class="ventas-vista" id="facturacion">
+          <div class="facturacion-contenedor">
+            <div class="facturacion-principal">
+
+              <!-- TABLA HISTORIAL REGISTROS AUTORIZACION -->
+              <div class="facturacion-tabla facturacion-tabla-historial">
+
+                <!-- HEADER CON TITULO Y BOTON -->
+                <div class="fact-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                  <h3 style="margin:0;">Órdenes pendientes de facturación</h3>
+                  <button id="aprobarFacturacion" style="padding:5px 10px; cursor:pointer;">Aprobar Facturación</button>
+                </div>
+
+                <div class="tabla-headers">
+                  <div></div>
+                  <div>Razón Social</div>
+                  <div>Origen</div>
+                  <div>Cantidad</div>
+                  <div>Unidad</div>
+                  <div>Precio</div>
+                  <div>Subtotal</div>
+                  <div>Retenc. 1%</div>
+                  <div>Pago</div>
+                  <div>Acciones</div>
+                </div>
+
+                <div class="tabla-body" id="fact-historial-body">
+                  <!-- Filas pendientes -->
+                </div>
+              </div>
+
+              <!-- TABLA DE ORDENES APROBADAS -->
+              <div class="facturacion-tabla facturacion-tabla-aprobadas" style="margin-top:20px;">
+                <div class="fact-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                  <h3 style="margin:0;">Órdenes aprobadas</h3>
+                </div>
+
+                <div class="tabla-headers">
+                  <div></div>
+                  <div>Razón Social</div>
+                  <div>Origen</div>
+                  <div>Cantidad</div>
+                  <div>Unidad</div>
+                  <div>Precio</div>
+                  <div>Subtotal</div>
+                  <div>Retenc. 1%</div>
+                  <div>Pago</div>
+                  <div>Acciones</div>
+                </div>
+
+                <div class="tabla-body" id="fact-aprobadas-body">
+                  <!-- Filas aprobadas -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- DOCUMENTOS -->
+        <div class="ventas-vista" id="documentos">CONTENIDO DOCUMENTOS</div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
