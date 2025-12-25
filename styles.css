@@ -1,82 +1,502 @@
-/* Reset & Variables */
-* {margin:0;padding:0;box-sizing:border-box;}
-:root {
-  --primary:#2563eb;
-  --secondary:#10b981;
-  --bg:#fdfdfd;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
-  --border:#e5e7eb;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f3f4f6;
+  overflow: hidden;
 }
 
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.5;
-  padding:0.75rem;
+.app-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100vh;
 }
 
-/* Header */
-header{text-align:center;padding:1rem 0;}
-header h1{font-size:1.4rem;font-weight:700;color:var(--primary);}
-header p{font-size:0.9rem;color:var(--muted);}
+.panel-izquierdo {
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  height: 100%;
+}
 
-/* Container */
-.container{max-width:480px;margin:0 auto;display:grid;gap:1rem;}
+#modulo-ventas {
+  padding: 24px;
+  height: 100%;
+  box-sizing: border-box;
+}
 
-/* Tabs */
-.tabs{display:flex;justify-content:space-around;margin-bottom:1rem;border-bottom:1px solid var(--border);}
-.tab-btn{flex:1;background:none;border:none;padding:0.5rem 0;text-align:center;cursor:pointer;font-size:0.8rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:0.25rem;}
-.tab-btn i{font-size:1.2rem;}
-.tab-btn.active{color:var(--primary);border-bottom:2px solid var(--primary);}
+.ventas-contenedor {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  box-sizing: border-box;
+}
 
-/* Tab Content */
-.tab-content{display:none;}
-.tab-content.active{display:block;}
+/* ================= TABS ================= */
+.ventas-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+}
 
-/* Card */
-.card{background:var(--card);border:1px solid var(--border);border-radius:1rem;padding:1rem;box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+.ventas-tab {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #d1d5db;
+  color: #333;
+  transition: all 0.2s ease;
+}
 
-/* Section Header */
-.section-header{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;}
-.section-header i{font-size:1.2rem;color:var(--primary);}
-.section-header h2{font-size:1rem;font-weight:600;color:var(--text);}
+.ventas-tab:hover {
+  background: #c0c4c8;
+}
 
-/* Resumen Mensual */
-.resumen-list{margin-top:0.75rem;display:flex;flex-direction:column;gap:0.5rem;}
-.resumen-card{border:1px solid var(--border);border-radius:0.75rem;padding:0.5rem;background:var(--bg);}
-.resumen-card h4{margin-bottom:0.25rem;color:var(--primary);font-size:0.95rem;}
-.resumen-card p{font-size:0.8rem;color:var(--muted);}
-.resumen-kavetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:0.3rem;margin-top:0.25rem;}
-.resumen-kavetas div{border:1px solid var(--border);border-radius:0.4rem;text-align:center;padding:0.3rem;font-size:0.75rem;background:#fff;}
+.ventas-tab.active {
+  background: #38a3d1;
+  color: #ffffff;
+}
 
-/* Control Calidad */
-.calidad-list{display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem;}
-.calidad-lote{border:1px solid var(--border);border-radius:0.75rem;padding:0.5rem;background:#fff;}
-.calidad-lote h4{margin-bottom:0.25rem;color:var(--primary);font-size:0.9rem;}
-.calidad-vin{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;}
-.contador{margin-top:0.5rem;font-size:0.85rem;color:var(--muted);}
+/* ================= VISTAS ================= */
+.ventas-vistas {
+  flex: 1;
+  overflow: hidden;
+}
 
-/* Peso / Estadísticas */
-.stats{display:flex;justify-content:space-around;margin-top:0.5rem;}
-.stat{text-align:center;}
-.stat .number{font-size:1.2rem;font-weight:700;color:var(--primary);}
-.stat .label{font-size:0.75rem;color:var(--muted);}
+.ventas-vista {
+  display: none;
+  height: 100%;
+}
 
-/* Steps */
-.steps{display:flex;flex-direction:column;gap:0.5rem;}
-.step{display:flex;justify-content:space-between;align-items:center;padding:0.5rem;border:1px solid var(--border);border-radius:0.6rem;background:#fff;}
-.step-info h3{font-size:0.85rem;color:var(--text);}
-.step-info p{font-size:0.75rem;color:var(--muted);}
-.badge{background:var(--primary);color:#fff;padding:0.2rem 0.5rem;border-radius:0.5rem;font-size:0.75rem;}
+.ventas-vista.active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-/* Charts */
-.charts{display:flex;flex-direction:column;gap:1rem;margin-top:0.5rem;}
-.chart-container{background:#fff;border:1px solid var(--border);border-radius:0.75rem;padding:0.5rem;}
-canvas{width:100% !important;height:200px !important;}
+/* ================= DIRECTORIO ================= */
+.directorio-contenedor {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+  height: 100%;
+}
 
-/* Kavetas / Items */
-.kaveta-item{border:1px solid var(--border);border-radius:0.4rem;text-align:center;padding:0.3rem;font-size:0.75rem;background:#fff;}
-.kaveta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(60px,1fr));gap:0.3rem;}
+.directorio-form {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  position: sticky;
+  top: 20px;
+  height: calc(100vh - 40px);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.directorio-form h3 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.directorio-form label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.directorio-form input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+}
+
+.directorio-form button {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  background: #ba027d;
+  color: #fff;
+}
+
+/* CONTENEDOR LISTA FIJO CON SCROLL */
+.directorio-tabla-contenedor {
+  flex: 1;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #c0c0c0;
+  border-radius: 10px;
+}
+
+.directorio-tabla {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.tabla-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.directorio-tabla table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.directorio-tabla th,
+.directorio-tabla td {
+  padding: 8px 8px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.directorio-tabla th {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 1;
+}
+
+/* BOTONES DIRECTORIO */
+.directorio-tabla button {
+  padding: 4px 6px;
+  font-size: 11px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: 500;
+  background: #fff;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.directorio-tabla button:hover {
+  background: #e5e7eb;
+}
+
+/* ================= AUTORIZACION ================= */
+.autorizacion-layout {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  height: 100%;
+  gap: 10px;
+  align-items: flex-start; /* alineamos contenido a la izquierda */
+}
+
+.autorizacion-registro {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;          /* ahora ocupa solo el 70% del ancho */
+  max-width: 80vw;     /* nunca excede el 70% del viewport */
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: auto;    /* scroll horizontal si hace falta */
+}
+
+/* ================= ENCABEZADOS ================= */
+.autorizacion-headers {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.8fr 1fr 40px;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  width: 100%;         /* se adapta al contenedor */
+  box-sizing: border-box;
+}
+
+/* ================= FILAS DE INFORMACIÓN ================= */
+.autorizacion-inputs {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.8fr 1fr 40px;
+  gap: 10px;
+  align-items: center;
+  width: 100%;         /* se adapta al contenedor */
+  box-sizing: border-box;
+}
+
+.autorizacion-inputs select,
+.autorizacion-inputs input {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 12px;
+  box-sizing: border-box;
+  width: 100%;         /* ocupa todo el ancho de la columna */
+  text-align: left;
+}
+
+.autorizacion-inputs input[readonly] {
+  background: #f3f4f6;
+}
+
+/* ================= BOTONES AUTORIZACION ================= */
+.btn-eliminar-fila {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-eliminar-fila:hover {
+  background: #e5e7eb;
+}
+
+.autorizacion-botones {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.autorizacion-botones button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  background: #ba027d;
+  color: #ffffff;
+  transition: background 0.2s ease;
+}
+
+.autorizacion-botones button:hover {
+  background: #9a025e;
+}
+
+/* ================= LINEA TOTAL ================= */
+.autorizacion-totales {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.8fr 1fr 40px;
+  gap: 10px;
+  align-items: center;
+  font-weight: 700;
+  border-top: 2px solid #38a3d1;       /* línea superior más visible */
+  padding: 6px 12px;
+  margin-top: 12px;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Nuevo diseño */
+  background: #e0f2f7;                 /* fondo azul claro */
+  border-radius: 8px;                   /* bordes redondeados */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08); /* sombra suave */
+}
+
+.autorizacion-totales div {
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  color: #0b3d91;                        /* color del texto más destacado */
+  font-size: 13px;
+}
+
+
+
+/* ================= FACTURACION ================= */
+.facturacion-contenedor {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.facturacion-principal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* TABLA FACTURACION */
+.facturacion-tabla {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid #c0c0c0;
+}
+
+/* Encabezados de tabla */
+.facturacion-tabla .tabla-headers {
+  display: grid;
+  grid-template-columns: 
+    40px /* checkbox */
+    minmax(120px, 2fr) /* Razón Social */
+    minmax(80px, 1.5fr) /* Origen */
+    minmax(50px, 1fr) /* Cantidad */
+    minmax(60px, 1fr) /* Unidad */
+    minmax(60px, 1fr) /* Precio */
+    minmax(60px, 1fr) /* Subtotal */
+    minmax(60px, 1fr) /* Retención */
+    minmax(60px, 1fr) /* Pago */
+    120px; /* Acciones */
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #d1d5db;
+  background: #ba027d;
+  color: #e0f2f7;
+  border-radius: 8px 8px 0 0;
+  align-items: center;
+  text-align: left;
+}
+
+/* Cuerpo de la tabla */
+.facturacion-tabla .tabla-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.facturacion-tabla .tabla-body .fact-hist-row {
+  display: grid;
+  grid-template-columns: 
+    40px
+    minmax(120px, 2fr)
+    minmax(80px, 1.5fr)
+    minmax(50px, 1fr)
+    minmax(60px, 1fr)
+    minmax(60px, 1fr)
+    minmax(60px, 1fr)
+    minmax(60px, 1fr)
+    minmax(60px, 1fr)
+    120px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 12px;
+  align-items: center;
+  text-align: left;
+  word-break: break-word;
+}
+
+/* Checkbox */
+.fact-check {
+  width: 18px;
+  height: 18px;
+  margin: 0 auto;
+}
+
+/* Botones acciones */
+.fact-acciones {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.fact-acciones button {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fact-acciones button:hover {
+  background: #e5e7eb;
+}
+
+/* Distinción visual entre historial y detalles */
+.facturacion-tabla-historial {
+  height: 60%;
+}
+
+.facturacion-tabla-detalles {
+  height: 40%;
+}
+
+
+
+
+
+/* Botones de acción en FACTURACION */
+.fact-acciones {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fact-acciones button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fact-acciones button:hover {
+  background: #e5e7eb;
+}
+
+/* Ajuste de la columna de acciones en la fila */
+.fact-hist-row {
+  grid-template-columns: 40px 2fr 1.2fr 1fr 1fr 1fr 1fr 1fr 1fr 80px; /* 10ª columna para acciones */
+}
+
+#fact-historial thead {
+  background-color: #f9c0d6; /* rosa */
+}
+
+#fact-aprobadas thead {
+  background-color: #a0e6a0; /* verde */
+}
+
+
